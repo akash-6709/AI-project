@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Project Maker</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="backgroundGlow"></div>
+
+    <nav class="navbar">
+
+        <div class="logoSection">
+
+            <img src="imges/AI Logo [Adobe Illustrator].jpg" class="logo">
+
+            <h2>
+                AI Project Maker
+            </h2>
+
+        </div>
+
+        <div class="navLinks">
+
+            <a href="#">Home</a>
+
+            <a href="#">Features</a>
+
+            <a href="#">Projects</a>
+
+            <button onclick="showLogin()">
+                Login / Signup
+            </button>
+
+        </div>
+
+    </nav>
+
+    <section class="hero">
+
+        <div class="leftHero">
+
+            <span class="badge">
+                ⚡ AI Powered Project Generator
+            </span>
+
+            <h1>
+
+                Turn Your Ideas Into
+
+                <span class="purpleText">
+                    AI-Powered Projects
+                </span>
+
+            </h1>
+
+            <p>
+
+                Generate project ideas,
+                architecture, features,
+                database structure and
+                deployment roadmap instantly.
+
+            </p>
+
+            <div class="heroButtons">
+
+                <button class="primaryBtn">
+                    Generate Project
+                </button>
+
+                <button class="secondaryBtn">
+                    View Projects
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="rightHero">
+
+            <div class="floatingCard card1">
+
+                <h3>⚡ Brainstorm</h3>
+
+                <p>
+                    AI creates smart ideas
+                </p>
+
+            </div>
+
+            <img src="imges/ai-robot-friendly-wave-robot-character-FDQCWPH3_t-removebg-preview.png" class="aiCharacter">
+
+            <div class="floatingCard card2">
+
+                <h3>🚀 Deploy</h3>
+
+                <p>
+                    Build and deploy apps
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="generatorBox">
+
+        <h2>
+            ✨ Describe Your Project
+        </h2>
+
+        <div class="inputBox">
+
+            <input type="text" id="prompt" placeholder="Enter your AI project idea">
+
+            <button onclick="generateAI()">
+                Generate
+            </button>
+
+        </div>
+
+        <div id="result"></div>
+
+    </section>
+
+    <section class="features">
+
+        <div class="featureCard">
+
+            <h2>⚡ AI Powered</h2>
+
+            <p>
+                Generate project ideas instantly.
+            </p>
+
+        </div>
+
+        <div class="featureCard">
+
+            <h2>🔐 Secure Auth</h2>
+
+            <p>
+                JWT based authentication system.
+            </p>
+
+        </div>
+
+        <div class="featureCard">
+
+            <h2>☁ Cloud Database</h2>
+
+            <p>
+                MongoDB Atlas cloud storage.
+            </p>
+
+        </div>
+
+    </section>
+
+    <section class="savedSection">
+
+        <h2>
+            Saved Projects 📁
+        </h2>
+
+        <div id="savedProjects"></div>
+
+    </section>
+
+    <footer class="footer">
+
+        <div class="footerLogo">
+
+            <img src="imges/AI Logo [Adobe Illustrator].jpg" class="footerImage">
+
+            <h2>
+                AI Project Maker
+            </h2>
+
+        </div>
+
+        <div class="footerLinks">
+
+            <a href="mailto:yourmail@gmail.com">
+                📧 Email
+            </a>
+
+            <a href="#">
+                💼 LinkedIn
+            </a>
+
+            <a href="#">
+                💻 GitHub
+            </a>
+
+            <a href="#">
+                📱 Contact
+            </a>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
