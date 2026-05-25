@@ -1,3 +1,5 @@
+const API_URL = "https://ai-project-backend-thd8.onrender.com";
+
 async function generateAI() {
 
     const prompt =
@@ -22,7 +24,7 @@ async function generateAI() {
 
         const response = await fetch(
 
-            "http://localhost:5000/api/ai/chat",
+            `${API_URL}/api/ai/chat`,
 
             {
                 method: "POST",
@@ -79,10 +81,11 @@ async function loadProjects() {
 
         const response = await fetch(
 
-            "http://localhost:5000/api/projects",
+            `${API_URL}/api/projects`,
 
             {
                 headers: {
+
                     authorization:
                         localStorage.getItem("token")
                 }
@@ -93,7 +96,9 @@ async function loadProjects() {
             await response.json();
 
         const savedProjects =
-            document.getElementById("savedProjects");
+            document.getElementById(
+                "savedProjects"
+            );
 
         savedProjects.innerHTML = "";
 
@@ -103,12 +108,12 @@ async function loadProjects() {
 
             <div class="projectCard">
 
-                <h3>🚀 ${project.title}</h3>
+                <h2>
+                    🚀 ${project.title}
+                </h2>
 
                 <p>
-
                     ${project.generatedConfig.aiResponse}
-
                 </p>
 
             </div>
@@ -122,26 +127,6 @@ async function loadProjects() {
     }
 }
 
-function showLogin() {
-
-    alert("Frontend Login UI Coming Next");
-}
-
-function showSignup() {
-
-    alert("Frontend Signup UI Coming Next");
-}
-
-function scrollToGenerator() {
-
-    document
-        .querySelector(".generatorSection")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
-}
-
-loadProjects();
 let authMode = "login";
 
 function showLogin() {
@@ -190,7 +175,7 @@ async function submitAuth() {
     if (authMode === "signup") {
 
         url =
-            "http://localhost:5000/api/auth/signup";
+            `${API_URL}/api/auth/signup`;
 
         bodyData = {
             name,
@@ -201,7 +186,7 @@ async function submitAuth() {
     } else {
 
         url =
-            "http://localhost:5000/api/auth/login";
+            `${API_URL}/api/auth/login`;
 
         bodyData = {
             email,
@@ -246,13 +231,14 @@ async function submitAuth() {
         alert("Authentication Failed");
     }
 }
+
 async function loginUser() {
 
     try {
 
         const response = await fetch(
 
-            "http://localhost:5000/api/auth/login",
+            `${API_URL}/api/auth/login`,
 
             {
                 method: "POST",
@@ -287,56 +273,14 @@ async function loginUser() {
 }
 
 loginUser();
-async function loadProjects() {
 
-    try {
+function scrollToGenerator() {
 
-        const response = await fetch(
-
-            "http://localhost:5000/api/projects",
-
-            {
-                headers: {
-
-                    authorization:
-                        localStorage.getItem("token")
-                }
-            }
-        );
-
-        const projects =
-            await response.json();
-
-        const savedProjects =
-            document.getElementById(
-                "savedProjects"
-            );
-
-        savedProjects.innerHTML = "";
-
-        projects.forEach((project) => {
-
-            savedProjects.innerHTML += `
-
-            <div class="projectCard">
-
-                <h2>
-                    🚀 ${project.title}
-                </h2>
-
-                <p>
-                    ${project.generatedConfig.aiResponse}
-                </p>
-
-            </div>
-
-            `;
+    document
+        .querySelector(".generatorSection")
+        .scrollIntoView({
+            behavior: "smooth"
         });
-
-    } catch (error) {
-
-        console.log(error);
-    }
 }
 
 loadProjects();
