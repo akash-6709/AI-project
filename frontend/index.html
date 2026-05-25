@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>AI Project Maker</title>
 
@@ -21,7 +22,10 @@
 
         <div class="logoSection">
 
-            <img src="imges/AI Logo [Adobe Illustrator].jpg" class="logo">
+            <img
+                src="imges/AI Logo [Adobe Illustrator].jpg"
+                class="logo"
+            >
 
             <h2>
                 AI Project Maker
@@ -74,11 +78,17 @@
 
             <div class="heroButtons">
 
-                <button class="primaryBtn">
+                <button
+                    class="primaryBtn"
+                    onclick="scrollToGenerator()"
+                >
                     Generate Project
                 </button>
 
-                <button class="secondaryBtn">
+                <button
+                    class="secondaryBtn"
+                    onclick="document.querySelector('.savedSection').scrollIntoView({behavior:'smooth'})"
+                >
                     View Projects
                 </button>
 
@@ -98,7 +108,10 @@
 
             </div>
 
-            <img src="imges/ai-robot-friendly-wave-robot-character-FDQCWPH3_t-removebg-preview.png" class="aiCharacter">
+            <img
+                src="imges/ai-robot-friendly-wave-robot-character-FDQCWPH3_t-removebg-preview.png"
+                class="aiCharacter"
+            >
 
             <div class="floatingCard card2">
 
@@ -114,7 +127,7 @@
 
     </section>
 
-    <section class="generatorBox">
+    <section class="generatorBox generatorSection">
 
         <h2>
             ✨ Describe Your Project
@@ -122,7 +135,11 @@
 
         <div class="inputBox">
 
-            <input type="text" id="prompt" placeholder="Enter your AI project idea">
+            <input
+                type="text"
+                id="prompt"
+                placeholder="Enter your AI project idea"
+            >
 
             <button onclick="generateAI()">
                 Generate
@@ -182,7 +199,10 @@
 
         <div class="footerLogo">
 
-            <img src="imges/AI Logo [Adobe Illustrator].jpg" class="footerImage">
+            <img
+                src="imges/AI Logo [Adobe Illustrator].jpg"
+                class="footerImage"
+            >
 
             <h2>
                 AI Project Maker
@@ -211,6 +231,48 @@
         </div>
 
     </footer>
+
+    <!-- AUTH MODAL -->
+
+    <div id="authModal"
+        class="authModal"
+        style="display:none;">
+
+        <div class="authBox">
+
+            <h2 id="authTitle">
+                Login
+            </h2>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+            >
+
+            <button onclick="submitAuth()">
+                Submit
+            </button>
+
+            <button onclick="closeModal()">
+                Close
+            </button>
+
+        </div>
+
+    </div>
 
     <script src="script.js"></script>
 
