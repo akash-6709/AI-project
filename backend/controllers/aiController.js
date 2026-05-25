@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const Project = require("../models/Project");
+const Project = require("../models/abc123");
 
 exports.chatWithAI = async (req, res) => {
 
