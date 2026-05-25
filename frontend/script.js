@@ -1,4 +1,6 @@
-const API_URL = "https://ai-project-backend-thd8.onrender.com";
+git add.
+git commit - m "final saved project fix"
+git push origin mainconst API_URL = "https://ai-project-backend-thd8.onrender.com";
 
 async function generateAI() {
 
@@ -56,13 +58,15 @@ async function generateAI() {
 
         const data = await response.json();
 
+        console.log(data);
+
         resultDiv.innerHTML = `
 
         <div class="projectCard">
 
             <h2>🚀 ${prompt}</h2>
 
-            <p>${data.response}</p>
+            <p>${data.response || "AI Generated Successfully"}</p>
 
         </div>
 
@@ -71,6 +75,8 @@ async function generateAI() {
         loadProjects();
 
     } catch (error) {
+
+        console.log(error);
 
         resultDiv.innerHTML = `
 
@@ -83,8 +89,6 @@ async function generateAI() {
         </div>
 
         `;
-
-        console.log(error);
     }
 }
 
@@ -96,6 +100,9 @@ async function loadProjects() {
             localStorage.getItem("token");
 
         if (!token) {
+
+            console.log("No token found");
+
             return;
         }
 
@@ -104,6 +111,8 @@ async function loadProjects() {
             `${API_URL}/api/projects`,
 
             {
+                method: "GET",
+
                 headers: {
                     authorization: token
                 }
@@ -113,8 +122,10 @@ async function loadProjects() {
         const data =
             await response.json();
 
+        console.log("PROJECT DATA:", data);
+
         const projects =
-            data.projects || data;
+            data.projects || [];
 
         const savedProjects =
             document.getElementById(
@@ -123,7 +134,22 @@ async function loadProjects() {
 
         savedProjects.innerHTML = "";
 
-        if (!projects.length) {
+        if (!Array.isArray(projects)) {
+
+            savedProjects.innerHTML = `
+
+            <div class="projectCard">
+
+                <h2>❌ Project Fetch Error</h2>
+
+            </div>
+
+            `;
+
+            return;
+        }
+
+        if (projects.length === 0) {
 
             savedProjects.innerHTML = `
 
@@ -138,14 +164,14 @@ async function loadProjects() {
             return;
         }
 
-        projects.reverse().forEach((project) => {
+        projects.forEach((project) => {
 
             savedProjects.innerHTML += `
 
             <div class="projectCard">
 
                 <h2>
-                    🚀 ${project.title}
+                    🚀 ${project.title || "Untitled"}
                 </h2>
 
                 <p>
@@ -160,6 +186,7 @@ async function loadProjects() {
     } catch (error) {
 
         console.log(error);
+
     }
 }
 
@@ -241,11 +268,17 @@ async function submitAuth() {
             }
         );
 
-        const data = await response.json();
+        const data =
+            await response.json();
+
+        console.log(data);
 
         if (!data.token) {
 
-            alert(data.message || "Authentication Failed");
+            alert(
+                data.message ||
+                "Authentication Failed"
+            );
 
             return;
         }
@@ -278,4 +311,7 @@ function scrollToGenerator() {
         });
 }
 
-loadProjects();
+window.onload = () => {
+
+    loadProjects();
+};
