@@ -284,3 +284,14 @@ function scrollToGenerator() {
 }
 
 loadProjects();
+function showLogin() {
+
+    document.getElementById("loginModal").style.display = "flex";
+
+}
+
+function closeLogin() {
+
+    document.getElementById("loginModal").style.display = "none";
+
+}
