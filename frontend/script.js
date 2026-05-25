@@ -1,7 +1,3 @@
-git add.
-git commit - m "final saved project fix"
-git push origin mainconst API_URL = "https://ai-project-backend-thd8.onrender.com";
-
 async function generateAI() {
 
     const prompt =
@@ -22,13 +18,20 @@ async function generateAI() {
         return;
     }
 
+    if (!prompt) {
+
+        alert("Enter project idea");
+
+        return;
+    }
+
     resultDiv.innerHTML = `
 
     <div class="projectCard">
 
         <h2>⏳ Generating AI Project...</h2>
 
-        <p>Please wait while AI creates your project.</p>
+        <p>Please wait...</p>
 
     </div>
 
@@ -66,7 +69,13 @@ async function generateAI() {
 
             <h2>🚀 ${prompt}</h2>
 
-            <p>${data.response || "AI Generated Successfully"}</p>
+            <p>
+
+                ${data.response ||
+            data.project?.generatedConfig?.aiResponse ||
+            "AI Generated Successfully"}
+
+            </p>
 
         </div>
 
