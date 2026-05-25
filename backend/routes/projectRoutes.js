@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const authMiddleware = require("../backend/middleware/authMiddleware");
+const authMiddleware = require("../middleware/authMiddleware");
 
 const {
     createProject,
