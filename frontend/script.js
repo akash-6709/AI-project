@@ -8,6 +8,18 @@ async function generateAI() {
     const resultDiv =
         document.getElementById("result");
 
+    const token =
+        localStorage.getItem("token");
+
+    if (!token) {
+
+        alert("Please login first");
+
+        showLogin();
+
+        return;
+    }
+
     resultDiv.innerHTML = `
 
     <div class="projectCard">
@@ -30,9 +42,10 @@ async function generateAI() {
                 method: "POST",
 
                 headers: {
+
                     "Content-Type": "application/json",
-                    authorization:
-                        localStorage.getItem("token")
+
+                    authorization: token
                 },
 
                 body: JSON.stringify({
@@ -79,21 +92,29 @@ async function loadProjects() {
 
     try {
 
+        const token =
+            localStorage.getItem("token");
+
+        if (!token) {
+            return;
+        }
+
         const response = await fetch(
 
             `${API_URL}/api/projects`,
 
             {
                 headers: {
-
-                    authorization:
-                        localStorage.getItem("token")
+                    authorization: token
                 }
             }
         );
 
-        const projects =
+        const data =
             await response.json();
+
+        const projects =
+            data.projects || data;
 
         const savedProjects =
             document.getElementById(
@@ -101,6 +122,21 @@ async function loadProjects() {
             );
 
         savedProjects.innerHTML = "";
+
+        if (!projects.length) {
+
+            savedProjects.innerHTML = `
+
+            <div class="projectCard">
+
+                <h2>No Saved Projects Yet 📁</h2>
+
+            </div>
+
+            `;
+
+            return;
+        }
 
         projects.reverse().forEach((project) => {
 
@@ -113,7 +149,7 @@ async function loadProjects() {
                 </h2>
 
                 <p>
-                    ${project.generatedConfig.aiResponse}
+                    ${project.generatedConfig?.aiResponse || "No AI Response"}
                 </p>
 
             </div>
@@ -133,27 +169,21 @@ function showLogin() {
 
     authMode = "login";
 
-    document.getElementById("authModal")
+    document.getElementById("loginModal")
         .style.display = "flex";
-
-    document.getElementById("authTitle")
-        .innerText = "Login";
 }
 
 function showSignup() {
 
     authMode = "signup";
 
-    document.getElementById("authModal")
+    document.getElementById("loginModal")
         .style.display = "flex";
-
-    document.getElementById("authTitle")
-        .innerText = "Signup";
 }
 
-function closeModal() {
+function closeLogin() {
 
-    document.getElementById("authModal")
+    document.getElementById("loginModal")
         .style.display = "none";
 }
 
@@ -213,6 +243,13 @@ async function submitAuth() {
 
         const data = await response.json();
 
+        if (!data.token) {
+
+            alert(data.message || "Authentication Failed");
+
+            return;
+        }
+
         localStorage.setItem(
             "token",
             data.token
@@ -220,7 +257,7 @@ async function submitAuth() {
 
         alert("Authentication Successful 🚀");
 
-        closeModal();
+        closeLogin();
 
         loadProjects();
 
@@ -232,66 +269,13 @@ async function submitAuth() {
     }
 }
 
-async function loginUser() {
-
-    try {
-
-        const response = await fetch(
-
-            `${API_URL}/api/auth/login`,
-
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    email: "akash@gmail.com",
-
-                    password: "123456"
-
-                })
-            }
-        );
-
-        const data = await response.json();
-
-        localStorage.setItem(
-            "token",
-            data.token
-        );
-
-        console.log("Login Success");
-
-    } catch (error) {
-
-        console.log(error);
-    }
-}
-
-loginUser();
-
 function scrollToGenerator() {
 
     document
-        .querySelector(".generatorSection")
+        .querySelector(".generatorBox")
         .scrollIntoView({
             behavior: "smooth"
         });
 }
 
 loadProjects();
-function showLogin() {
-
-    document.getElementById("loginModal").style.display = "flex";
-
-}
-
-function closeLogin() {
-
-    document.getElementById("loginModal").style.display = "none";
-
-}
