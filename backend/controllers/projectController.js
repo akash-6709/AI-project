@@ -11,19 +11,28 @@ exports.createProject = async (req, res) => {
         } = req.body;
 
         const project = await Project.create({
+
             title,
+
             prompt,
-            generatedConfig
+
+            generatedConfig,
+
+            user: req.user.id
         });
 
-        res.status(201).json(project);
+        res.status(201).json({
+            success: true,
+            project
+        });
 
     } catch (error) {
 
         console.log(error);
 
         res.status(500).json({
-            error: "Project creation failed"
+            success: false,
+            message: "Project creation failed"
         });
     }
 };
@@ -32,16 +41,22 @@ exports.getProjects = async (req, res) => {
 
     try {
 
-        const projects = await Project.find();
+        const projects = await Project.find({
+            user: req.user.id
+        }).sort({ createdAt: -1 });
 
-        res.json(projects);
+        res.status(200).json({
+            success: true,
+            projects
+        });
 
     } catch (error) {
 
         console.log(error);
 
         res.status(500).json({
-            error: "Failed to fetch projects"
+            success: false,
+            message: "Cannot fetch projects"
         });
     }
 };

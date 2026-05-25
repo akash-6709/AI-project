@@ -13,15 +13,20 @@ const projectSchema = new mongoose.Schema({
     },
 
     generatedConfig: {
-        type: Object
+        type: Object,
+        required: true
     },
 
-    createdAt: {
-        type: Date,
-        default: Date.now
+    user: {
+
+        type: mongoose.Schema.Types.ObjectId,
+
+        ref: "User"
     }
 
+}, {
+    timestamps: true
 });
 
-module.exports = mongoose.models.Project ||
+module.exports =
     mongoose.model("Project", projectSchema);
