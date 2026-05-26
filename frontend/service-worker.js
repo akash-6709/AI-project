@@ -1,9 +1,43 @@
-self.addEventListener("install", () => {
+const CACHE_NAME = "ai-project-cache-v1";
 
-    console.log("Service Worker Installed");
+const urlsToCache = [
+
+    "/",
+    "/index.html",
+    "/style.css",
+    "/script.js",
+    "/manifest.json"
+
+];
+
+self.addEventListener("install", (event) => {
+
+    event.waitUntil(
+
+        caches.open(CACHE_NAME)
+
+            .then((cache) => {
+
+                return cache.addAll(urlsToCache);
+
+            })
+
+    );
 
 });
 
-self.addEventListener("fetch", () => {
+self.addEventListener("fetch", (event) => {
+
+    event.respondWith(
+
+        caches.match(event.request)
+
+            .then((response) => {
+
+                return response || fetch(event.request);
+
+            })
+
+    );
 
 });
