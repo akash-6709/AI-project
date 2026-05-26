@@ -447,3 +447,29 @@ button {
 
     cursor: pointer;
 }
+
+#languageSelect {
+
+    background: #8b5cf6;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    font-weight: bold;
+}
+
+#languageSelect option {
+
+    background: #111827;
+
+    color: white;
+}

@@ -377,3 +377,64 @@ function toggleAuth() {
             "Create Account";
     }
 }
+function changeLanguage() {
+
+    const lang =
+        document.getElementById(
+            "languageSelect"
+        ).value;
+
+    const title =
+        document.getElementById(
+            "heroTitle"
+        );
+
+    const desc =
+        document.getElementById(
+            "heroDesc"
+        );
+
+    if (lang === "hi") {
+
+        title.innerHTML = `
+
+        अपने आइडियाज को
+
+        <span class="purpleText">
+            AI प्रोजेक्ट्स
+        </span>
+
+        में बदलें
+
+        `;
+
+        desc.innerHTML = `
+
+        AI आधारित प्रोजेक्ट,
+        फीचर्स और डिप्लॉयमेंट
+        तुरंत बनाएं।
+
+        `;
+
+    } else {
+
+        title.innerHTML = `
+
+        Turn Your Ideas Into
+
+        <span class="purpleText">
+            AI-Powered Projects
+        </span>
+
+        `;
+
+        desc.innerHTML = `
+
+        Generate project ideas,
+        architecture, features,
+        database structure and
+        deployment roadmap instantly.
+
+        `;
+    }
+}
