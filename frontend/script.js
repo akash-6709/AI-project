@@ -52,7 +52,7 @@ async function generateAI() {
 
                     "Content-Type": "application/json",
 
-                    authorization: token
+                    Authorization: `Bearer ${token}`
                 },
 
                 body: JSON.stringify({
@@ -138,7 +138,7 @@ async function loadProjects() {
                 method: "GET",
 
                 headers: {
-                    authorization: token
+                    Authorization: `Bearer ${token}`
                 }
             }
         );
@@ -343,3 +343,37 @@ window.onload = () => {
 
     loadProjects();
 };
+function toggleAuth() {
+
+    const title =
+        document.getElementById("authTitle");
+
+    const nameInput =
+        document.getElementById("name");
+
+    const switchBtn =
+        document.getElementById("switchAuth");
+
+    if (authMode === "login") {
+
+        authMode = "signup";
+
+        title.innerText = "Signup";
+
+        nameInput.style.display = "block";
+
+        switchBtn.innerText =
+            "Already have account? Login";
+
+    } else {
+
+        authMode = "login";
+
+        title.innerText = "Login";
+
+        nameInput.style.display = "none";
+
+        switchBtn.innerText =
+            "Create Account";
+    }
+}

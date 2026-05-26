@@ -351,3 +351,99 @@ button {
     font-size: 20px;
     text-align: right;
 }
+
+.loginModal {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 999;
+}
+
+.loginBox {
+
+    width: 350px;
+
+    background: #111827;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+
+    position: relative;
+}
+
+.loginBox h2 {
+
+    color: white;
+
+    text-align: center;
+}
+
+.loginBox input {
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #1f2937;
+
+    color: white;
+
+    outline: none;
+}
+
+.loginBox button {
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #8b5cf6;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.closeAuth {
+
+    position: absolute;
+
+    right: 15px;
+
+    top: 10px;
+
+    color: white;
+
+    cursor: pointer;
+}

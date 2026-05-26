@@ -215,17 +215,19 @@
 
     <!-- AUTH MODAL -->
 
-    <!-- AUTH MODAL -->
+    <div id="loginModal" class="loginModal" style="display:none;">
 
-    <div id="loginModal" class="authModal" style="display:none;">
+        <div class="loginBox">
 
-        <div class="authBox">
+            <span class="closeAuth" onclick="closeLogin()">
+                ✖
+            </span>
 
             <h2 id="authTitle">
                 Login
             </h2>
 
-            <input type="text" id="name" placeholder="Name" autocomplete="off">
+            <input type="text" id="name" placeholder="Name" autocomplete="off" style="display:none;">
 
             <input type="email" id="email" placeholder="Email" autocomplete="off">
 
@@ -235,17 +237,13 @@
                 Submit
             </button>
 
-            <p onclick="showSignup()" style="cursor:pointer;color:#8b5cf6;">
+            <p id="switchAuth" onclick="toggleAuth()" style="cursor:pointer;
+            color:#8b5cf6;
+            text-align:center;">
+
                 Create Account
-            </p>
 
-            <p onclick="showLogin()" style="cursor:pointer;color:#8b5cf6;">
-                Already have account?
             </p>
-
-            <button onclick="closeLogin()">
-                Close
-            </button>
 
         </div>
 
