@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
             {
                 id: user._id
             },
-            "secretkey",
+            process.env.JWT_SECRET,
             {
                 expiresIn: "7d"
             }
@@ -60,6 +60,7 @@ exports.signup = async (req, res) => {
         });
     }
 };
+
 exports.login = async (req, res) => {
 
     try {
@@ -96,7 +97,7 @@ exports.login = async (req, res) => {
             {
                 id: user._id
             },
-            "secretkey",
+            process.env.JWT_SECRET,
             {
                 expiresIn: "7d"
             }

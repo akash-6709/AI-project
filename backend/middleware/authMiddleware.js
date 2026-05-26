@@ -4,10 +4,10 @@ module.exports = (req, res, next) => {
 
     try {
 
-        const token =
+        const authHeader =
             req.headers.authorization;
 
-        if (!token) {
+        if (!authHeader) {
 
             return res.status(401).json({
 
@@ -16,6 +16,9 @@ module.exports = (req, res, next) => {
                 message: "No Token"
             });
         }
+
+        const token =
+            authHeader.split(" ")[1];
 
         const decoded =
             jwt.verify(
