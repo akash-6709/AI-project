@@ -1,3 +1,5 @@
+const API_URL = "https://ai-project-backend-thd8.onrender.com";
+
 async function generateAI() {
 
     const prompt =
@@ -61,7 +63,7 @@ async function generateAI() {
 
         const data = await response.json();
 
-        console.log(data);
+        console.log("AI RESPONSE:", data);
 
         resultDiv.innerHTML = `
 
@@ -108,9 +110,22 @@ async function loadProjects() {
         const token =
             localStorage.getItem("token");
 
+        const savedProjects =
+            document.getElementById(
+                "savedProjects"
+            );
+
         if (!token) {
 
-            console.log("No token found");
+            savedProjects.innerHTML = `
+
+            <div class="projectCard">
+
+                <h2>🔐 Login To View Projects</h2>
+
+            </div>
+
+            `;
 
             return;
         }
@@ -134,12 +149,7 @@ async function loadProjects() {
         console.log("PROJECT DATA:", data);
 
         const projects =
-            data.projects || [];
-
-        const savedProjects =
-            document.getElementById(
-                "savedProjects"
-            );
+            data.projects || data || [];
 
         savedProjects.innerHTML = "";
 
@@ -173,7 +183,7 @@ async function loadProjects() {
             return;
         }
 
-        projects.forEach((project) => {
+        projects.reverse().forEach((project) => {
 
             savedProjects.innerHTML += `
 
@@ -280,7 +290,7 @@ async function submitAuth() {
         const data =
             await response.json();
 
-        console.log(data);
+        console.log("AUTH DATA:", data);
 
         if (!data.token) {
 
@@ -309,6 +319,15 @@ async function submitAuth() {
 
         alert("Authentication Failed");
     }
+}
+
+function logout() {
+
+    localStorage.removeItem("token");
+
+    alert("Logged Out");
+
+    location.reload();
 }
 
 function scrollToGenerator() {
