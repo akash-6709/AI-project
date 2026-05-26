@@ -1,52 +1,20 @@
 const Project = require("../models/Project");
 
-exports.createProject = async (req, res) => {
+const getProjects = async (req, res) => {
 
     try {
 
-        const {
-            title,
-            prompt,
-            generatedConfig
-        } = req.body;
+        const projects =
+            await Project.find({
 
-        const project = await Project.create({
+                user: req.user.id
 
-            title,
-
-            prompt,
-
-            generatedConfig,
-
-            user: req.user.id
-        });
-
-        res.status(201).json({
-            success: true,
-            project
-        });
-
-    } catch (error) {
-
-        console.log(error);
-
-        res.status(500).json({
-            success: false,
-            message: "Project creation failed"
-        });
-    }
-};
-
-exports.getProjects = async (req, res) => {
-
-    try {
-
-        const projects = await Project.find({
-            user: req.user.id
-        }).sort({ createdAt: -1 });
+            }).sort({ createdAt: -1 });
 
         res.status(200).json({
+
             success: true,
+
             projects
         });
 
@@ -55,8 +23,14 @@ exports.getProjects = async (req, res) => {
         console.log(error);
 
         res.status(500).json({
+
             success: false,
-            message: "Cannot fetch projects"
+
+            message: "Project Fetch Failed"
         });
     }
+};
+
+module.exports = {
+    getProjects
 };
