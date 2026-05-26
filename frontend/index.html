@@ -215,7 +215,9 @@
 
     <!-- AUTH MODAL -->
 
-    <div id="authModal" class="authModal" style="display:none;">
+    <!-- AUTH MODAL -->
+
+    <div id="loginModal" class="authModal" style="display:none;">
 
         <div class="authBox">
 
@@ -223,21 +225,31 @@
                 Login
             </h2>
 
-            <input type="text" id="name" placeholder="Name">
+            <input type="text" id="name" placeholder="Name" autocomplete="off">
 
-            <input type="email" id="email" placeholder="Email">
+            <input type="email" id="email" placeholder="Email" autocomplete="off">
 
-            <input type="password" id="password" placeholder="Password">
+            <input type="password" id="password" placeholder="Password" autocomplete="new-password">
 
             <button onclick="submitAuth()">
                 Submit
             </button>
 
-            <button onclick="closeModal()">
+            <p onclick="showSignup()" style="cursor:pointer;color:#8b5cf6;">
+                Create Account
+            </p>
+
+            <p onclick="showLogin()" style="cursor:pointer;color:#8b5cf6;">
+                Already have account?
+            </p>
+
+            <button onclick="closeLogin()">
                 Close
             </button>
 
         </div>
+
+    </div>
 
     </div>
 
