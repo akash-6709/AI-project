@@ -2,11 +2,11 @@ const CACHE_NAME = "ai-project-cache-v1";
 
 const urlsToCache = [
 
-    "/",
-    "/index.html",
-    "/style.css",
-    "/script.js",
-    "/manifest.json"
+    "./",
+    "./index.html",
+    "./style.css",
+    "./script.js",
+    "./manifest.json"
 
 ];
 
